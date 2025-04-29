@@ -8,29 +8,32 @@ dependencies:
   - python=3.9
   - pip
   - pip:
-    - torch==2.4.1
-    - torchvision==0.19.1
-    - torchaudio==2.4.1
-    - scikit-image
-    - omegaconf
-    - opencv-contrib-python
-    - imgaug
-    - ninja
-    - timm
-    - albumentations
-    - jupyterlab
-    - scipy
-    - joblib
-    - scikit-learn
-    - ruamel.yaml
-    - trimesh
-    - pyyaml
-    - imageio
-    - open3d
-    - transformations
-    - einops
-    - gdown
-    - flash-attn
-    - nodejs
-    - xformers==0.0.28.post1
-    - huggingface-hub
+      # install the core PyTorch stack first, from the torch index
+      - "torch==2.4.1+cu126  --index-url https://download.pytorch.org/whl/cu126"
+      - "torchvision==0.19.1+cu126  --index-url https://download.pytorch.org/whl/cu126"
+      - "torchaudio==2.4.1+cu126  --index-url https://download.pytorch.org/whl/cu126"
+
+      # pure-Python / wheel-backed packages (no build needed)
+      - xformers==0.0.30          # or 0.0.28.post1 if you choose option B
+      - scikit-image
+      - omegaconf
+      - opencv-contrib-python
+      - imgaug
+      - timm
+      - albumentations
+      - jupyterlab
+      - scipy
+      - joblib
+      - scikit-learn
+      - ruamel.yaml
+      - trimesh
+      - pyyaml
+      - imageio
+      - open3d
+      - transformations
+      - einops
+      - gdown
+      # - flash-attn     # ← leave commented unless you really need to compile it
+
+      # remove this line – it is only a 2 kB Python stub, **not** Node.js
+      # - nodejs
